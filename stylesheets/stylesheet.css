@@ -58,12 +58,37 @@ Theme Styles
 body {
   box-sizing: border-box;
   color: #e0e0e0;
-  background: #0d0d0d;
+  background: #0a0a0a;
   font-size: 16px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/*******************************************************************************
+Animations
+*******************************************************************************/
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes subtleGlow {
+  0%, 100% { text-shadow: 0 0 30px rgba(100, 150, 255, 0.1); }
+  50% { text-shadow: 0 0 40px rgba(100, 150, 255, 0.2); }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -86,12 +111,12 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
-  color: #a0a0a0;
-  font-weight: 400;
+  font-size: 12px;
+  color: #5a6a7a;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
 }
 
 h4 {
@@ -268,31 +293,47 @@ Full-Width Styles
 }
 
 #header_wrap {
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #0f0f12 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+#header_wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(80, 120, 200, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 #header_wrap .inner {
-  padding: 60px 20px 40px 20px;
+  padding: 80px 20px 50px 20px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 #project_title {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   color: #fff;
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
-  letter-spacing: -1px;
-  text-shadow: none;
+  letter-spacing: -2px;
+  animation: fadeInUp 0.8s ease-out, subtleGlow 4s ease-in-out infinite;
 }
 
 #project_tagline {
-  color: #888;
-  font-size: 18px;
-  font-weight: 400;
+  color: #6a7a8a;
+  font-size: 14px;
+  font-weight: 500;
   background: none;
-  text-shadow: none;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
+  animation: fadeIn 1s ease-out 0.3s backwards;
 }
 
 #downloads {
@@ -335,19 +376,19 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #0d0d0d;
+  background: #0a0a0a;
   border-top: none;
   border-bottom: none;
 }
 
 #main_content {
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
 }
 
 #footer_wrap {
-  background: #0d0d0d;
-  border-top: 1px solid #1a1a1a;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /*******************************************************************************
@@ -364,9 +405,10 @@ Video Container Styles
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #000;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: fadeInUp 0.8s ease-out 0.5s backwards;
 }
 
 .video-container iframe {
@@ -386,37 +428,45 @@ Social Links Styles
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin: 40px 0;
-  padding: 30px 0;
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  gap: 12px;
+  margin: 50px 0;
+  padding: 35px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeIn 0.8s ease-out 0.7s backwards;
 }
 
 .social-link {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
-  background: #1a1a1a;
-  border-radius: 8px;
-  color: #e0e0e0;
-  font-size: 14px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  color: #9aa0a6;
+  font-size: 13px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .social-link:hover {
-  background: #2a2a2a;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(100, 150, 255, 0.3);
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 150, 255, 0.1);
 }
 
 .social-link svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.social-link:hover svg {
+  opacity: 1;
 }
 
 /*******************************************************************************
@@ -424,12 +474,20 @@ Featured Section Styles
 *******************************************************************************/
 
 .featured-section {
-  margin-top: 40px;
+  margin-top: 50px;
+}
+
+.featured-section:first-child {
+  margin-top: 0;
 }
 
 .featured-section h3 {
   text-align: center;
   margin-bottom: 25px;
+}
+
+.featured-section + .featured-section {
+  animation: fadeInUp 0.8s ease-out 0.9s backwards;
 }
 
 
@@ -444,16 +502,17 @@ Small Device Styles
   }
 
   #header_wrap .inner {
-    padding: 40px 15px 30px 15px;
+    padding: 50px 15px 35px 15px;
   }
 
   #project_title {
-    font-size: 36px;
+    font-size: 42px;
+    letter-spacing: -1px;
   }
 
   #project_tagline {
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 3px;
   }
 
   .social-links {
@@ -461,13 +520,13 @@ Small Device Styles
   }
 
   .social-link {
-    padding: 10px 15px;
-    font-size: 13px;
+    padding: 10px 14px;
+    font-size: 12px;
   }
 
   .social-link svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -481,12 +540,18 @@ Small Device Styles
     padding: 15px;
   }
 
+  #header_wrap .inner {
+    padding: 40px 15px 30px 15px;
+  }
+
   #project_title {
-    font-size: 28px;
+    font-size: 32px;
+    letter-spacing: -1px;
   }
 
   #project_tagline {
-    font-size: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
   }
 
   h1 {
@@ -498,8 +563,8 @@ Small Device Styles
   }
 
   h3 {
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-size: 10px;
+    letter-spacing: 2px;
   }
 
   h4 {
@@ -516,11 +581,11 @@ Small Device Styles
 
   .social-links {
     gap: 8px;
+    padding: 25px 0;
   }
 
   .social-link {
-    padding: 10px 12px;
-    font-size: 12px;
+    padding: 12px;
   }
 
   .social-link span {
@@ -528,8 +593,12 @@ Small Device Styles
   }
 
   .social-link svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .video-container {
+    border-radius: 8px;
   }
 
   code, pre {
